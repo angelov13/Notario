@@ -4,7 +4,7 @@ bootstrap@3.x:
   version "3.3.7"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-3.3.7.tgz#5a389394549f23330875a3b150656574f8a9eb71"
 
-jquery@2.x:
-  version "2.2.4"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-2.2.4.tgz#2c89d6889b5eac522a7eea32c14521559c6cbf02"
+vue:
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/vue/-/vue-2.0.7.tgz#83698ef4f76ce702f425b5576b06ff28e12db143"
 

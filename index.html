@@ -1,17 +1,64 @@
 <!DOCTYPE html>
 <html lang="es_ES">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>AppList &copy; Angel Avila</title>
+    <title>Notar.io &copy; Angel Avila</title>
     <!-- Bootstrap 3.3.7  -->
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.min.css">
 </head>
-<body>
 
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+<body>
+    <!-- id app para que funcione Vue  -->
+    <div id="app" class="container">
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <span class="welcome">
+                    <span v-if="userName">{{userName}},</span> Bienvenido a Notar.io aqui puedes organizar todas tus ideas :D
+                </span>
+            </div>
+        </div>
+        <!-- ambas columnas estan en la misma fila -->
+        <div class="row">
+            <!-- div que contiene la lista de Notas -->
+            <div id="menu-notas" class="col-sm-3 col-lg-4">
+                <div class="header text-center">
+                    Todas tus Notas
+                    <!-- boton para añadir notas este div activa a Vue para crear la nueva Nota -->
+                    <span class="nueva-nota">+</span>
+                </div>
+                <!-- div que contiene todas las notas -->
+                <div class="elements">
+                    <!-- todas las notas contienen un titulo y contenido -->
+                    <div class="lista">
+                        <span class="title">{{titleDev}}</span>
+                        <span class="content">{{contentDev}}</span>
+                    </div>
+                </div>
+            </div>
+            <!-- div donde se escriben las notas. -->
+            <div class="col-sm-9 col-lg-8">
+                <!-- header con el nombre de la nota seleccionada -->
+                <div class="header">{{activeTitle}}</div>
+                <!-- contenedor de los forms -->
+                <div class="form container-fluid">
+                    <!-- primer form donde se escribe el titulo o aparece el seleccionado -->
+                    <div class="row">
+                        <input type="text" v-model="titleDev" id="input-title" class="form-control" placeholder="Esciba aqui el Titulo de la Nota">
+                    </div>
+                    <!-- segundo form donde aparece todo el contenido seleccionado -->
+                    <div class="row">
+                        <textarea v-model="contentDev" id="input-content" class="form-control" placeholder="Comprar Pan..."></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="node_modules/vue/dist/vue.min.js"></script>
     <script src="js/app.min.js"></script>
 </body>
+
 </html>
