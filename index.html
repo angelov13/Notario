@@ -14,6 +14,7 @@
 <body>
     <!-- id app para que funcione Vue  -->
     <div id="app" class="container">
+        <br><br>
         <div class="row">
             <div class="col-xs-12 text-center">
                 <span class="welcome">
@@ -21,44 +22,54 @@
                 </span>
             </div>
         </div>
+        <br><br>
         <!-- ambas columnas estan en la misma fila -->
         <div class="row">
             <!-- div que contiene la lista de Notas -->
             <div id="menu-notas" class="col-sm-3 col-lg-4">
-                <div class="header text-center">
-                    Todas tus Notas
-                    <!-- boton para añadir notas este div activa a Vue para crear la nueva Nota -->
-                    <span class="nueva-nota">+</span>
+                <div class="header text-center">Todas tus Notas<span class="nueva-nota">+</span>
                 </div>
                 <!-- div que contiene todas las notas -->
-                <div class="elements">
+                <div class="listas">
                     <!-- todas las notas contienen un titulo y contenido -->
-                    <div class="lista">
-                        <span class="title">{{titleDev}}</span>
-                        <span class="content">{{contentDev}}</span>
-                    </div>
+                    <template v-for="note in notes">
+                        <div v-if="note.title!==''" class="lista">
+                            <span class="title">{{note.title}}</span>
+                            <span class="content">{{note.content}}</span>
+                            <span v-if="note.tags !== ''" class="tags">{{note.tags}}</span>
+                        </div>
+                    </template>
                 </div>
+
+
             </div>
             <!-- div donde se escriben las notas. -->
             <div class="col-sm-9 col-lg-8">
                 <!-- header con el nombre de la nota seleccionada -->
-                <div class="header">{{activeTitle}}</div>
+                <div class="header">{{newNote.title}}</div>
                 <!-- contenedor de los forms -->
                 <div class="form container-fluid">
                     <!-- primer form donde se escribe el titulo o aparece el seleccionado -->
                     <div class="row">
-                        <input type="text" v-model="titleDev" id="input-title" class="form-control" placeholder="Esciba aqui el Titulo de la Nota">
+                        <input type="text" v-model="newNote.title" id="input-title" class="form-control" placeholder="Esciba aqui el Titulo de la Nota">
+                    </div>
+                    <div class="row">
+                        <input type="text" v-model="newNote.tags" placeholder="Precione enter para agregar varios tags" class="form-control">
                     </div>
                     <!-- segundo form donde aparece todo el contenido seleccionado -->
                     <div class="row">
-                        <textarea v-model="contentDev" id="input-content" class="form-control" placeholder="Comprar Pan..."></textarea>
+                        <textarea v-model="newNote.content" id="input-content" class="form-control" placeholder="Comprar Pan..."></textarea>
+                    </div>
+                    <div class="row">
+                        <input type="button" @click="addNote(false)" value="Guardar">
+                        <input type="button" @click="addNote(true)" value="Guardar y Nuevo">
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="node_modules/vue/dist/vue.min.js"></script>
-    <script src="js/app.min.js"></script>
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script src="js/app.js"></script>
 </body>
 
 </html>
