@@ -1,15 +1,20 @@
-$red_base : #D27459;
+$red_base : #8C0017;
 $white_base: #ddffdd;
 $gray_base: #f2f2f0;
-$black_base: #000000;
 $green_base:#42b983;
+$green: #00585C;
+$gray_night_base: #4a4a4b;
 
 ::selection{
     color: $gray_base;
     background-color:$green_base;
 }
 body{
-    background-color: $red_base;
+    background-color: $gray_night_base;
+    background-image: url(../fondo.jpg);
+    font-family: 'Roboto';
+    background-blend-mode: multiply;
+    background-repeat: repeat;
     cursor: default;
 }
 h1,h2,h3,h4,h5,h6{
@@ -32,5 +37,4 @@ h1,h2,h3,h4,h5,h6{
 .label{
     font-size: 0.8em;
     padding: .4em .7em;
-
 }

@@ -15,3 +15,5 @@ html{<br>
     }<br>
 <br>
 Es recomendado utilizar Bootstrap y Jquery desde una CDN para aprovechar la velocidad de carga de los servidores CDN
+![Imagen de Muestra](https://github.com/angelov13/lista/blob/master/imagen.png)
+<img href="imagen.png"/>
