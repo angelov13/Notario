@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Notar.io &copy; Angel Avila</title>
     <!-- google font -->
-    <!-- <link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
     <!-- Bootstrap 3.3.7  -->
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.min.css">
@@ -34,11 +34,11 @@
                     </div>
                     <div class="panel-body">
                         <div v-if="notes.length>=1">
-                            <template v-for="note in notes">
+                            <template v-for="notita in notes">
                                 <ul  class="list-group">
-                                   <li @click="selectNote(note)" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>{{note.title | min}}</li>
-                                   <li class="list-group-item"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>{{note.content | min('more')}}</li>
-                                   <li class="list-group-item"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span>{{note.tags | tags}}</li>
+                                   <li @click="selectNote(notita)" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>{{notita.title | min}}</li>
+                                   <li class="list-group-item"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>{{notita.content | min('more')}}</li>
+                                   <li class="list-group-item"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span>{{notita.tags | tags}}</li>
                                 </ul>
                             </template>
                         </div>
@@ -65,12 +65,11 @@
                     <input type="button" @click="deleteNote" class="btn btn-warning" value="Eliminar Nota">
                     <label v-if="hasError" :class="{'label':true, 'label-warning': typeError=='warning', 'label-danger': typeError=='danger', 'label-info': typeError=='info'}">{{errorMessage}}</label>
                 </form>
-                <pre>{{$data}}</pre>
             </div>
         </div>
     </div>
     <script src="node_modules/vue/dist/vue.js"></script>
-    <script src="js/app.min.js"></script>
+    <script src="js/app.js"></script>
 </body>
 
 </html>
