@@ -35,7 +35,7 @@
                     <div class="panel-body">
                         <div v-if="notes.length>=1">
                             <template v-for="note in notes">
-                                <ul @click="selectNote" class="list-group">
+                                <ul class="list-group">
                                    <li class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>{{note.title | min}}</li>
                                    <li class="list-group-item"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>{{note.content | min('more')}}</li>
                                    <li class="list-group-item"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span>{{note.tags | tags}}</li>
@@ -56,13 +56,13 @@
                     <div class="form-group">
                         <h4 class="title-note text-center"><span v-if="note.title==''">Nota sin Titulo</span>{{note.title}}</h4>
                         <input v-model="note.title" type="text" class="form-control" placeholder="Nota sin Titulo...">
-                        <p v-show="note.tagsString.length > 0 && note.tagsString.length < 7" class="label label-warning">Separa los tags con comas ","</p>
+                        <p v-show="note.tagsString.length > 0 && note.tagsString.length < 6" class="label label-warning">Separa los tags con comas ","</p>
                         <input v-model="note.tagsString" type="text" class="form-control" placeholder="Tags">
                         <textarea v-model="note.content" rows="12" cols="40" class="form-control" placeholder="Nota sin Contenido..."></textarea>
                     </div>
-                    <input type="button" @click="newNote" class="btn btn-success" value="Nueva Nota">
-                    <input v-if="sesion===true" type="button" @click="saveNote" class="btn btn-primary" :value="saveButton">
-                    <input v-if="hasError === 2 || hasError === 3" type="button" @click="cancel" class="btn btn-warning" :value="cancelButton">
+                    <input @click='newNote' type="button"  class="btn btn-success" value="Nueva Nota">
+                    <input v-if="noteSelected !== null" type="button" @click="saveNote" class="btn btn-primary" value="Guardar Nota">
+                    <input v-if="noteSelected !== null" type="button" @click="deleteNote" class="btn btn-warning" value="Eliminar Nota">
                     <label v-if="hasError" :class="{'label':true, 'label-warning': typeError=='warning', 'label-danger': typeError=='danger', 'label-info': typeError=='info'}">{{errorMessage}}</label>
                 </form>
             </div>

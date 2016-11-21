@@ -28,17 +28,19 @@ var app = new Vue({
     data: {
         hasError: 0,
         typeError: '',
-        sesion: false,
-        saveButton: 'Guardar Nota',
-        cancelButton: 'Cancelar',
-        noteSelected: null,
+        noteSelected: 1,
         note: {
             title: '',
             content: '',
             tags: [''],
             tagsString: ''
         },
-        notes: []
+        notes: [{
+            title: '',
+            content: '',
+            tags: [''],
+            tagsString: ''
+        }]
     },
     methods: {
         addTags: function() {
@@ -48,28 +50,13 @@ var app = new Vue({
             }
             this.note.tags = t;
         },
-        saveNote: function() {
-            if (this.validate === true && this.noteSelected !== null) {
-                this.addNote(true);
-                this.sesion = true;
-                // this.note.title = '';
-                // this.note.content = '';
-                // this.note.tags = [];
-                // this.note.tagsString = '';
+        newNote: function(){
 
-            }
         },
-        addNote: function(save) {
-            if (save) {
-                if (this.sesion === true) {
-                    this.addTags();
-                    this.notes.replace(this.noteSelected, 1, this.note);
-                    this.typeError = 'info';
-                    this.hasError = 4;
-                }
-            } else {
-                this.notes.push(this.noteSelected);
-            }
+        saveNote: function() {
+
+        },
+        addNote: function() {
 
         },
         validate: function() {
@@ -89,18 +76,12 @@ var app = new Vue({
                 return true;
             } else {
                 this.typeError = 'danger';
-                this.hasError = 5;
+                this.hasError = 3;
                 return false;
             }
         },
-        selectNote: function() {
-            if (this.note.title === '' && this.note.content === '' && this.note.tags === '') {
-                this.hasError = 3;
-                this.typeError = 'danger';
-            }
-        },
-        cancel: function() {
-            this.resetError(1000);
+        deleteNote: function() {
+
         },
         resetError: function(time) {
             setTimeout(reset(), time);
@@ -118,14 +99,10 @@ var app = new Vue({
         errorMessage: function() {
             if (this.hasError === 1) {
                 return 'No puedes guardar una Nota vacia';
-            } else if (this.hasError === 2) {
-                return '¿Estas seguro que deceas salir sin guardar?';
-            } else if (this.hasError === 3) {
-                return 'Si abres esta nota perderas todos los cambios que no hayas guardado ¿Deseas continuar?';
-            } else if (this.hasError === 4) {
+            }else if (this.hasError === 2) {
                 this.resetError(1500);
                 return 'Los datos han sido guardados Correctamente';
-            } else if (this.hasError === 5) {
+            } else if (this.hasError === 3) {
                 this.resetError(2000);
                 return 'A habido un error indesperado a la hora de guardar';
             }
