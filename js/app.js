@@ -1,4 +1,4 @@
-Vue.config.degug = true;
+// Vue.config.degug = true;
 Vue.filter('min', function(value, z) {
     var r = 40;
     if (z == 'more') {
@@ -22,42 +22,54 @@ Vue.filter('tags', function(value) {
         return tags;
     }
 });
-
+var noteSelected = null;
 var app = new Vue({
     el: '#app',
     data: {
         hasError: 0,
         typeError: '',
-        noteSelected: 1,
         note: {
             title: '',
             content: '',
-            tags: [''],
+            tags: [],
             tagsString: ''
         },
-        notes: [{
-            title: '',
-            content: '',
-            tags: [''],
-            tagsString: ''
-        }]
+        notes: []
     },
     methods: {
         addTags: function() {
             var t = this.note.tagsString.split(',');
-            for (var i = 0; i < t.length; i++) {
-                t[i] = t[i].trim();
+            if (t[0] !== '') {
+                for (var i = 0; i < t.length; i++) {
+                    t[i] = t[i].trim();
+                }
+                this.note.tags = t;
             }
-            this.note.tags = t;
         },
-        newNote: function(){
-
+        newNote: function() {
+            if (this.validate() === true) {
+                this.addTags();
+                this.notes.push(this.note);
+                noteSelected = null;
+                this.note = {
+                    title: '',
+                    content: '',
+                    tags: [],
+                    tagsString: ''
+                };
+            }
         },
         saveNote: function() {
+            if (this.validate() === true && noteSelected !== null) {
 
+            }
         },
         addNote: function() {
 
+        },
+        selectNote: function(note) {
+            this.note = note;
+            noteSelected = note;
         },
         validate: function() {
             if (this.note.content.trim() === '') {
@@ -84,13 +96,12 @@ var app = new Vue({
 
         },
         resetError: function(time) {
-            setTimeout(reset(), time);
-
-            function reset() {
-                this.hasError = 0;
-                this.typeError = 'warning';
-            }
+            setTimeout(this.reset, time);
         },
+        reset: function() {
+            this.hasError = 0;
+            this.typeError = 'warning';
+        }
     },
     computed: {
         footerMessaje: function() {
@@ -99,11 +110,11 @@ var app = new Vue({
         errorMessage: function() {
             if (this.hasError === 1) {
                 return 'No puedes guardar una Nota vacia';
-            }else if (this.hasError === 2) {
+            } else if (this.hasError === 2) {
                 this.resetError(1500);
                 return 'Los datos han sido guardados Correctamente';
             } else if (this.hasError === 3) {
-                this.resetError(2000);
+                this.resetError(1000);
                 return 'A habido un error indesperado a la hora de guardar';
             }
         }

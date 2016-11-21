@@ -35,8 +35,8 @@
                     <div class="panel-body">
                         <div v-if="notes.length>=1">
                             <template v-for="note in notes">
-                                <ul class="list-group">
-                                   <li class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>{{note.title | min}}</li>
+                                <ul  class="list-group">
+                                   <li @click="selectNote(note)" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>{{note.title | min}}</li>
                                    <li class="list-group-item"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>{{note.content | min('more')}}</li>
                                    <li class="list-group-item"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span>{{note.tags | tags}}</li>
                                 </ul>
@@ -61,13 +61,13 @@
                         <textarea v-model="note.content" rows="12" cols="40" class="form-control" placeholder="Nota sin Contenido..."></textarea>
                     </div>
                     <input @click='newNote' type="button"  class="btn btn-success" value="Nueva Nota">
-                    <input v-if="noteSelected !== null" type="button" @click="saveNote" class="btn btn-primary" value="Guardar Nota">
-                    <input v-if="noteSelected !== null" type="button" @click="deleteNote" class="btn btn-warning" value="Eliminar Nota">
+                    <input type="button" @click="saveNote" class="btn btn-primary" value="Guardar Nota">
+                    <input type="button" @click="deleteNote" class="btn btn-warning" value="Eliminar Nota">
                     <label v-if="hasError" :class="{'label':true, 'label-warning': typeError=='warning', 'label-danger': typeError=='danger', 'label-info': typeError=='info'}">{{errorMessage}}</label>
                 </form>
+                <pre>{{$data}}</pre>
             </div>
         </div>
-
     </div>
     <script src="node_modules/vue/dist/vue.js"></script>
     <script src="js/app.min.js"></script>
