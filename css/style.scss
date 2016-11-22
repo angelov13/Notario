@@ -1,12 +1,9 @@
-$red_base : #8C0017;
 $white_base: #ddffdd;
-$gray_base: #f2f2f0;
 $green_base:#42b983;
-$green: #00585C;
 $gray_night_base: #4a4a4b;
 
 ::selection{
-    color: $gray_base;
+    color: $white_base;
     background-color:$green_base;
 }
 body{

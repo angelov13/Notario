@@ -1,4 +1,0 @@
-1.  cuando se de click en la nota deben aparecer el contenido en los formularios para editarlos
-2.  al editarlos automáticamente se modificara el contenido de las listas pero solo al darle a guardar
-    se guardara el resultado en la lista que se modifico
-3.  se deben de poder agregar tags separados por comas
